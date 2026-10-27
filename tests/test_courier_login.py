@@ -13,7 +13,8 @@ class TestCourierLogin:
     @allure.title("Ошибка авторизации при отсутствии обязательного поля (пароль)")
     def test_login_requires_all_fields(self, new_courier):
         response = login_courier(new_courier["login"], None)
-        assert response.status_code == 504
+        assert response.status_code == 504 
+        assert "Service unavailable" in response.text
 
     @allure.title("Ошибка авторизации с неверным паролем")
     def test_login_wrong_credentials_returns_error(self, new_courier):

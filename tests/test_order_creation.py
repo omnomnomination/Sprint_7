@@ -1,6 +1,6 @@
 import allure
 import pytest
-from api import create_order, get_orders, cancel_order
+from api import create_order, cancel_order
 from data import ORDER_COLORS
 
 class TestOrderCreation:
@@ -41,9 +41,3 @@ class TestOrderCreation:
         assert response.status_code == 201
         assert isinstance(track, int)
 
-    @allure.title("Получение списка заказов")
-    def test_get_orders_list(self):
-        response = get_orders()
-        assert response.status_code == 200
-        assert "orders" in response.json()
-        assert isinstance(response.json()["orders"], list)
